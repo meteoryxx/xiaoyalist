@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IP Address List with Delay</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            width: 50%;
+            /* 设置表格宽度占页面的50% */
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 1em;
+        }
+
+        table {
+            width: 100%;
+            margin: 0 auto;
+            font-size: 1.2em;
+        }
+
+        th,
+        td {
+            padding: 0.5em;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* 设置IP列宽度为表格的80% */
+        .container table th:first-child,
+        .container table td:first-child {
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>小雅清单</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>IP</th>
+                    <th>测试</th>
+                    <th>延迟 (毫秒)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ip, delay in ips %}
+                <tr>
+                    <td><a target="_blank" href="http://{{ ip }}:5678/">{{ ip }}</a></td>
+                    <td><a target="_blank" href="http://{{ ip }}:5678/%E5%85%83%E6%95%B0%E6%8D%AE/config.mp4">测试</a>
+                    </td>
+                    <td>{{ delay }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
