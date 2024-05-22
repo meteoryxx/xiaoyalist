@@ -5,6 +5,7 @@ import ping3
 # ZoomEye API URL
 url = 'https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB+Alist%22+%2Bcountry%3ACN+%2Bsubdivisions%3A%E5%B9%BF%E4%B8%9C+%2Bapp%3A%22nginx%22&page=1&t=v4%2Bv6%2Bweb%2Bhost'
 
+urls = ['https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB+Alist%22+%2Bcountry%3ACN+%2Bsubdivisions%3A%E5%B9%BF%E4%B8%9C+%2Bapp%3A%22nginx%22&page=1&t=v4%2Bv6%2Bweb%2Bhost','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22&page=1&t=v4%2Bv6%2Bweb%2Bhost','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22+%2Bcountry%3AUS&page=1&t=v4%2Bv6%2Bweb%2Bhost']
 # JSON file path
 file_path = 'ip.json'
 
@@ -45,6 +46,31 @@ def get_ips_from_zoomeye(url):
     else:
         print(f"Request failed, status code: {response.status_code}")
         return []
+
+def get_ips_from_zoomeye_urls(urls):
+    ip_list = []
+
+    for url in urls:
+        headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
+        'Accept': 'application/json, text/plain, */*'
+    }
+
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            try:
+                data = response.json()
+                ips = data.get('matches', [])  # Assuming the IPs are under 'matches'
+                ip_list+=[match['ip'] for match in ips]  # Extract the IP addresses
+            except json.JSONDecodeError:
+                print("Response content is not valid JSON format")
+                
+        else:
+            print(f"Request failed, status code: {response.status_code}")
+           
+        
+
+    return ip_list
 
 def test_api_with_delay(ip_address):
     test_url = test_endpoint.format(ip=ip_address)
@@ -130,3 +156,4 @@ def get_ips():
 
     # Write cleaned IP list and delay information to file
     write_ips_to_file(file_path, cleaned_ip_list_with_delay)
+
