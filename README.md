@@ -5,8 +5,8 @@
 
 docker build -t xiaoyalist .
 
-运行容器
-docker run -d -p 5678:5000 --restart unless-stopped xiaoyalist
+运行容器  5679是清单  5678是反代的xiaoya
+docker run -d --restart=unless-stopped -p 5679:5000 -p 5678:80 --name xiaoyalist xiaoyalist
 ```
 
 ![image](https://github.com/meteoryxx/xiaoyalist/assets/11530764/d50de230-5e38-4c55-ad13-447327d2c1ac)
