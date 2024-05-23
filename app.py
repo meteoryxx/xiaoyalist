@@ -21,7 +21,7 @@ def index():
         data = json.load(file)
 
     # 从数据中提取IP地址列表和延迟信息，并转换为毫秒
-    ip_list = [(item['ip'], round(item['delay'] * 1000)) for item in data['ips']]
+    ip_list = [(item['ip'], round(item['delay'] )) for item in data['ips']]
 
     # 按延迟时间排序，最短的放在最前面
     ip_list.sort(key=lambda x: x[1])
