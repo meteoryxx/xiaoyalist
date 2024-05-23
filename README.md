@@ -10,3 +10,6 @@ docker run -d --restart=unless-stopped -p 5679:5000 -p 5678:80 --name xiaoyalist
 ```
 
 ![image](https://github.com/meteoryxx/xiaoyalist/assets/11530764/d50de230-5e38-4c55-ad13-447327d2c1ac)
+不用担心自己的token是否有用和过期、封号
+
+![image](https://github.com/meteoryxx/xiaoyalist/assets/11530764/09226ad0-276f-4b48-99fd-804a5517cc81)
