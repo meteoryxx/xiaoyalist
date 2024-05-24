@@ -14,6 +14,7 @@ file_path = 'ip.json'
 
 # API test endpoint
 test_endpoint = 'http://{ip}:5678/api/fs/get'
+test_endpoint2 = 'http://{ip}:5678/api/me'
 
 # Headers for API test
 headers = {
@@ -77,7 +78,22 @@ def get_ips_from_zoomeye_urls(urls):
 
 def test_api_with_delay(ip_address):
     test_url = test_endpoint.format(ip=ip_address)
+    test_url2 = test_endpoint2.format(ip=ip_address)
+
+    
     try:
+        #先进行匿名用户测试
+        response0 = requests.get(test_url, headers=headers, timeout=4)
+        if response0.status_code == 200:
+            try:
+                data = response0.json()
+                if 'code' in data and data['code'] == 401:
+                    print_with_timestamp("Guest user is disabled, login please")
+                    return False, None
+            except json.JSONDecodeError:
+                print_with_timestamp("Response content is not valid JSON format")
+                return False, None
+        #进行播放链接测试
         response = requests.post(test_url, headers=headers, json=body, allow_redirects=True, timeout=4)
         response_delay_ms = response.elapsed.total_seconds() * 1000
         if response.status_code == 200:
@@ -202,7 +218,7 @@ http {
             add_header X-Upstream-Addr $upstream_addr;
         }
                 # 对静态文件进行缓存
-        location ~* \.(jpg|jpeg|png|gif|ico|css|js|pdf|svg|woff|woff2|ttf|eot)$ {
+        location ~* \.(jpg|jpeg|png|gif|ico|css|pdf|svg|woff|woff2|ttf|eot)$ {
             expires 30d;
             add_header Cache-Control "public, no-transform";
         }
