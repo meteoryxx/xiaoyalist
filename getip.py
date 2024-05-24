@@ -140,7 +140,7 @@ def get_ips():
     ip_list_json = read_ips_from_file(file_path)
 
     # Get new IP list from ZoomEye
-    ip_list_zoomeye = get_ips_from_zoomeye_urls(urls[0:1])
+    ip_list_zoomeye = get_ips_from_zoomeye_urls(urls)
     print_with_timestamp("获取到zoomeye新IP")
     print(ip_list_zoomeye)
 
