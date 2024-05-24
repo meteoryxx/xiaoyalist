@@ -1,4 +1,5 @@
 import datetime
+import subprocess
 from flask import Flask, render_template
 import json
 import schedule
@@ -14,6 +15,7 @@ def updateurl():
     # 例如，你可以从某个URL获取新的IP列表，并将其保存到ip.json文件中
     getip.print_with_timestamp("获取IP")
     getip.get_ips()
+    subprocess.run(["nginx", "-s", "reload"])
     pass
 
 

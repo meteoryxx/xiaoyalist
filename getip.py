@@ -217,11 +217,7 @@ http {
             proxy_pass http://backend;
             add_header X-Upstream-Addr $upstream_addr;
         }
-                # 对静态文件进行缓存
-        location ~* \.(jpg|jpeg|png|gif|ico|css|pdf|svg|woff|woff2|ttf|eot)$ {
-            expires 30d;
-            add_header Cache-Control "public, no-transform";
-        }
+
     }
 }
 """
@@ -234,6 +230,7 @@ http {
          # 重新加载 Nginx 配置
         subprocess.run(["nginx", "-s", "reload"])
         print_with_timestamp("更新nginx完成")
+
 
 
 
