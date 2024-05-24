@@ -171,6 +171,7 @@ def get_ips_change_nginx():
 def generate_nginx_config(ip_list):
     print_with_timestamp("开始创建nginx配置")
     # Nginx 配置文件路径
+    #nginx_config_path = "nginx.conf"
     nginx_config_path = "/etc/nginx/nginx.conf"
 
     # 生成新的 Nginx 配置内容
@@ -198,6 +199,12 @@ http {
 
         location / {
             proxy_pass http://backend;
+            add_header X-Upstream-Addr $upstream_addr;
+        }
+                # 对静态文件进行缓存
+        location ~* \.(jpg|jpeg|png|gif|ico|css|js|pdf|svg|woff|woff2|ttf|eot)$ {
+            expires 30d;
+            add_header Cache-Control "public, no-transform";
         }
     }
 }
