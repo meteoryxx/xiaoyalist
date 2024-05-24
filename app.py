@@ -1,3 +1,4 @@
+import datetime
 from flask import Flask, render_template
 import json
 import schedule
@@ -7,12 +8,14 @@ import getip
 
 app = Flask(__name__)
 
+
 def updateurl():
     # 这里应该是你的更新逻辑
     # 例如，你可以从某个URL获取新的IP列表，并将其保存到ip.json文件中
-    print("获取IP")
+    getip.print_with_timestamp("获取IP")
     getip.get_ips()
     pass
+
 
 @app.route('/')
 def index():
