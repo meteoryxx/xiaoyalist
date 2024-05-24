@@ -6,8 +6,9 @@ import subprocess
 # ZoomEye API URL
 url = 'https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB+Alist%22+%2Bcountry%3ACN+%2Bsubdivisions%3A%E5%B9%BF%E4%B8%9C+%2Bapp%3A%22nginx%22&page=1&t=v4%2Bv6%2Bweb%2Bhost'
 
-urls = ['https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB+Alist%22+%2Bcountry%3ACN+%2Bsubdivisions%3A%E5%B9%BF%E4%B8%9C+%2Bapp%3A%22nginx%22&page=1&t=v4%2Bv6%2Bweb%2Bhost','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22+%2Bport%3A5678+%2Bcountry%3ACN&page=1&pageSize=50&t=v4%2Bv6%2Bweb','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22+%2Bport%3A5678+%2Bcountry%3ACN+%2Bsubdivisions%3A%E5%B9%BF%E4%B8%9C&page=1&pageSize=50&t=v4%2Bv6%2Bweb','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22+%2Bport%3A5678+%2Bcountry%3ACN+%2Bsubdivisions%3A%E5%B9%BF%E4%B8%9C+%2Bcity%3A%E5%B9%BF%E5%B7%9E&page=1&pageSize=50&t=v4%2Bv6%2Bweb','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22+%2Bport%3A5678+%2Bcountry%3ACN+%2Bsubdivisions%3A%E5%B9%BF%E4%B8%9C+%2Bcity%3A%E6%B7%B1%E5%9C%B3%E5%B8%82&page=1&pageSize=50&t=v4%2Bv6%2Bweb','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22+%2Bport%3A5678+%2Bcountry%3ACN+%2Bsubdivisions%3A%E6%B5%99%E6%B1%9F&page=1&pageSize=50&t=v4%2Bv6%2Bweb','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22+%2Bport%3A5678+%2Bcountry%3ACN+%2Bsubdivisions%3A%E4%B8%8A%E6%B5%B7&page=1&pageSize=50&t=v4%2Bv6%2Bweb','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22+%2Bport%3A5678+%2Bcountry%3ACN+%2Bsubdivisions%3A%E5%8C%97%E4%BA%AC&page=1&pageSize=50&t=v4%2Bv6%2Bweb','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22+%2Bport%3A5678+%2Bcountry%3AJP&page=1&pageSize=50&t=v4%2Bv6%2Bweb','https://www.zoomeye.org/api/search?q=title%3A%22alist%22+%2Bcountry%3ACN+%2Bport%3A5678&page=1&t=v4%2Bv6%2Bweb%2Bhost']
+urls_o = ['https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB+Alist%22+%2Bcountry%3ACN+%2Bsubdivisions%3A%E5%B9%BF%E4%B8%9C+%2Bapp%3A%22nginx%22&page=1&t=v4%2Bv6%2Bweb%2Bhost','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22+%2Bport%3A5678+%2Bcountry%3ACN&page=1&pageSize=50&t=v4%2Bv6%2Bweb','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22+%2Bport%3A5678+%2Bcountry%3ACN+%2Bsubdivisions%3A%E5%B9%BF%E4%B8%9C&page=1&pageSize=50&t=v4%2Bv6%2Bweb','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22+%2Bport%3A5678+%2Bcountry%3ACN+%2Bsubdivisions%3A%E5%B9%BF%E4%B8%9C+%2Bcity%3A%E5%B9%BF%E5%B7%9E&page=1&pageSize=50&t=v4%2Bv6%2Bweb','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22+%2Bport%3A5678+%2Bcountry%3ACN+%2Bsubdivisions%3A%E5%B9%BF%E4%B8%9C+%2Bcity%3A%E6%B7%B1%E5%9C%B3%E5%B8%82&page=1&pageSize=50&t=v4%2Bv6%2Bweb','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22+%2Bport%3A5678+%2Bcountry%3ACN+%2Bsubdivisions%3A%E6%B5%99%E6%B1%9F&page=1&pageSize=50&t=v4%2Bv6%2Bweb','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22+%2Bport%3A5678+%2Bcountry%3ACN+%2Bsubdivisions%3A%E4%B8%8A%E6%B5%B7&page=1&pageSize=50&t=v4%2Bv6%2Bweb','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22+%2Bport%3A5678+%2Bcountry%3ACN+%2Bsubdivisions%3A%E5%8C%97%E4%BA%AC&page=1&pageSize=50&t=v4%2Bv6%2Bweb','https://www.zoomeye.org/api/search?q=title%3A%22%E5%B0%8F%E9%9B%85%E7%9A%84%E5%88%86%E7%B1%BB%2BAlist%22+%2Bport%3A5678+%2Bcountry%3AJP&page=1&pageSize=50&t=v4%2Bv6%2Bweb','https://www.zoomeye.org/api/search?q=title%3A%22alist%22+%2Bcountry%3ACN+%2Bport%3A5678&page=1&t=v4%2Bv6%2Bweb%2Bhost']
 
+urls=['https://www.zoomeye.org/api/search?q=title%3A%22alist%22+%2Bcountry%3ACN+%2Bport%3A5678&page=1&t=v4%2Bv6%2Bweb%2Bhost','https://www.zoomeye.org/api/search?q=title%3A%22alist%22+%2Bcountry%3ACN+%2Bport%3A5678+%2Bsubdivisions%3A%E5%B9%BF%E4%B8%9C+%2Bcity%3A%E6%B7%B1%E5%9C%B3%E5%B8%82&page=1&t=v4%2Bv6%2Bweb%2Bhost',"https://www.zoomeye.org/api/search?q=title%3A%22alist%22+%2Bcountry%3ACN+%2Bport%3A5678+%2Bsubdivisions%3A%E5%B9%BF%E4%B8%9C+%2Bcity%3A%E6%B7%B1%E5%9C%B3&page=1&t=v4%2Bv6%2Bweb%2Bhost","https://www.zoomeye.org/api/search?q=title%3A%22alist%22+%2Bcountry%3ACN+%2Bport%3A5678+%2Bsubdivisions%3A%E5%B9%BF%E4%B8%9C+%2Bcity%3A%E6%B7%B1%E5%9C%B3+%2Bafter%3A%222024-01-01%22+%2Bbefore%3A%222025-01-01%22&page=1&t=v4%2Bv6%2Bweb%2Bhost"]
 
 # JSON file path
 file_path = 'ip.json'
@@ -179,7 +180,7 @@ def get_ips_change_nginx():
     port_number = 5678
     data.sort(key=lambda x: x[1])
     # 使用列表推导式将IP地址和端口号组合成字符串
-    formatted_data = [f"{ip}:{port_number}" for ip, _ in data[0:8]]
+    formatted_data = [f"{ip}:{port_number}" for ip, _ in data[0:3]]
     generate_nginx_config(formatted_data)
 
 
@@ -203,10 +204,11 @@ http {
         least_conn;
 """
     for ip in ip_list:
-        nginx_config += f"""        server {ip};
+        nginx_config += f"""        server {ip} max_fails=3 fail_timeout=30s;
 """
     
     nginx_config += """
+       keepalive 16;
     }
 
     server {
@@ -215,7 +217,10 @@ http {
 
         location / {
             proxy_pass http://backend;
+            # 添加反代节点的 IP 地址到响应头
             add_header X-Upstream-Addr $upstream_addr;
+            # 配置节点失效检测
+            proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
         }
 
     }
