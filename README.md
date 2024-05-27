@@ -10,6 +10,7 @@ docker run -d --restart=unless-stopped -p 5679:5000 -p 5678:80 --name xiaoyalist
 ```
 
 ```
+每日访问量统计
 awk -F'[][]' '{print $2}' /var/log/nginx/access.log | awk '{print $1}' | cut -d: -f1 | sort | uniq -c | awk '{print $2 ": " $1 " 次访问"}'
 
 ```
